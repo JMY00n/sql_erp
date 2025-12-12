@@ -1,11 +1,11 @@
-# 🏭 제조업 ERP 데이터베이스 설계 및 구현 프로젝트
+# 고압 세척기(제조업) ERP 데이터베이스 설계 및 구현 프로젝트
 
 ### 2025학년도 2학기 데이터베이스 과제
-**과목명:** 데이터베이스  
-**담당교수:** 김진숙 교수님  
-**학과:** 컴퓨터소프트웨어과  
-**학번:** 202530533  
-**이름:** 윤정민  
+**과목명:** 데이터베이스
+**담당교수:** 김진숙 교수님 
+**학과:** 컴퓨터소프트웨어과
+**학번:** 202530533
+**이름:** 윤정민
 
 ---
 
@@ -26,3 +26,21 @@
 2.  **제품(Product) 관리**: 전기식/연료식 세척기 모델 관리 및 자재와의 BOM(소요량) 관계 정의.
 3.  **생산(Production) 관리**: 생산 주문(Order) 접수 및 실제 생산 실적(Record) 등록, 자재 자동 차감.
 4.  **재고 및 출고(Shipment) 관리**: 생산 완료된 완제품의 재고 현황 파악 및 고객 출고 처리.
+
+## 3. 데이터베이스 설계 (Schema)
+총 10개의 테이블로 구성되어 있으며, 모든 테이블은 **제3정규형(3NF)**을 만족하도록 설계되었습니다.
+
+| 테이블명 (Table) | 설명 | 주요 컬럼 |
+| :--- | :--- | :--- |
+| **ERP_PRODUCT** | 제품 기본 정보 | `PRODUCT_ID`, `PRODUCT_NAME` |
+| **ERP_MATERIAL** | 자재 기본 정보 | `MATERIAL_ID`, `STOCK_QTY` |
+| **ERP_BOM** | 제품별 자재 소요량 | `PRODUCT_ID`, `MATERIAL_ID`, `REQUIRED_QTY` |
+| **ERP_INVENTORY** | 완제품 재고 현황 | `PRODUCT_ID`, `STOCK_QTY` |
+| **ERP_PRODUCTION_ORDER** | 생산 주문(계획) | `ORDER_ID`, `ORDER_QTY` |
+| **ERP_PRODUCTION_RECORD** | 생산 실적(완료) | `RECORD_ID`, `PRODUCED_QTY` |
+| **ERP_MATERIAL_IN** | 자재 입고 이력 | `IN_ID`, `IN_QTY` |
+| **ERP_MATERIAL_USAGE** | 생산 자재 사용 이력 | `USAGE_ID`, `USED_QTY` |
+| **ERP_SHIPMENT** | 출고(배송) 정보 | `SHIPMENT_ID`, `SHIPMENT_DATE` |
+| **ERP_SHIPMENT_RECORD** | 출고 상세 품목 | `SHIPMENT_RECORD_ID`, `QTY` |
+
+---
